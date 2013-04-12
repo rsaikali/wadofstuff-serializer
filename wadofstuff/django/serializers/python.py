@@ -155,7 +155,9 @@ class Serializer(base.Serializer):
         if hasattr(obj, field):
             extra = getattr(obj, field)
             if callable(extra):
-                self._extras[field] = smart_unicode(extra(), strings_only=True)
+                #self._extras[field] = smart_unicode(extra(), strings_only=True)
+                # Keeping Django objects models JSON if needed...
+                self._extras[field] = extra()
             else:
                 self._extras[field] = smart_unicode(extra, strings_only=True)
                 
